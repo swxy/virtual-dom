@@ -26,12 +26,15 @@
 ```
 可以把上述页面想象一个嵌套的盒子：
 ![dom盒子](./img/box.png)
+
 对于每一个盒子，都能用一个对象(element对象)来表示，通过这个对象可以对盒子中的内容进行查询或者修改。这其实就是DOM提供的编程接口能力。
 
 浏览器会解析以上代码成一个树状结构：
+
 ![dom树结构](./img/dom_s.png)
 
 可以在chrome的devtool中打印window对象，查看其document属性的构造，里面包含具体的解析结果：
+
 ![dom结构](./img/dom.png)
 
 这里面的document就是DOM提供的重要数据类型之一，DOM还包含`element`、`nodeList`、`attribute`、`namedNodeMap`等数据类型。
@@ -40,11 +43,12 @@
 # DOM与JavaScript是什么关系
 在页面中，js可以通过通过DOM来访问文档和其中的元素，因为每一个在浏览器中打开的页面都会被注入document和window对象，
 相当于赋予js操作页面的能力。而页面中的每一个元素——包括整个文档，文档头部，文档标签等，都是文档所属于的文档对象模型（DOM）的一部分，
-和修改所以js可以访问页面任意元素。
+所以js可以访问页面任意元素。
 
 但是DOM并不是和特定的编程语言强耦合的，像python， java都会自己解析html, xml的库。一般写爬虫的时候会用到。
 
 DOM虽然并不是一个编程语言，但如果没有DOM， JavaScript语言也不会有任何网页，XML页面以及涉及到的元素的概念或模型。可以近似的认为：
+
 >  html 或 XML 页面 = DOM + JS (脚本语言)
 
 # 参考
