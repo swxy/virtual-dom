@@ -1,0 +1,24 @@
+{
+  "name": "virtual-dom",
+  "version": "1.0.0",
+  "description": "学习virtual-dom, 了解其实现原理。",
+  "main": "index.js",
+  "scripts": {
+    "buildjsx": "babel --plugins transform-react-jsx"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/swxy/virtual-dom.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/swxy/virtual-dom/issues"
+  },
+  "homepage": "https://github.com/swxy/virtual-dom#readme",
+  "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-core": "^6.24.1",
+    "babel-plugin-transform-react-jsx": "^6.24.1"
+  }
+}
