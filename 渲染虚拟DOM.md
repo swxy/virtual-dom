@@ -41,12 +41,15 @@ function createElement(node) {
 # 更新DOM
 以下几种情景会涉及到更新操作：
 1. 新增元素，可以使用`appendChild`来添加节点
+
 ![新增元素](./img/edit_dom_add.png)
 
 2. 删除元素，可以使用`removeChild`来操作
+
 ![删除元素](./img/edit_dom_rm.png)
 
 3. 替换元素，可以使用`replaceChild`来完成
+
 ![替换元素](./img/edit_dom_replace.png)
 
 （注：以上图片均来源于：[How to write your own Virtual DOM](https://medium.com/@deathmood/how-to-write-your-own-virtual-dom-ee74acc13060)）
@@ -141,6 +144,9 @@ function updateElement($parent, newNode, oldNode, index = 0) {
 ```
 结合[构建虚拟DOM](./构建虚拟DOM.md)中的辅助函数，初见虚拟dom的雏形，具体效果[点我查看](http://xchb.work/demo/virtual-dom/representing/index.html)
 
-遗留问题：
+# 遗留问题：
 
 如何设置元素的属性，像class， id等。
+
+# 参考：
+1. [How to write your own Virtual DOM](https://medium.com/@deathmood/how-to-write-your-own-virtual-dom-ee74acc13060)
