@@ -150,3 +150,4 @@ function updateElement($parent, newNode, oldNode, index = 0) {
 
 # 参考：
 1. [How to write your own Virtual DOM](https://medium.com/@deathmood/how-to-write-your-own-virtual-dom-ee74acc13060)
+
