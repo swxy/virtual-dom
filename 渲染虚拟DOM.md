@@ -128,7 +128,7 @@ function updateElement($parent, newNode, oldNode, index = 0) {
       createElement(newNode),
       $parent.childNodes[index]
     );
-  } else if (newNode.type) {
+  } else if (newNode.tagName) {
     const newLength = newNode.children.length;
     const oldLength = oldNode.children.length;
     for (let i = 0; i < newLength || i < oldLength; i++) {
