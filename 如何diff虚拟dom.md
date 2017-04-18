@@ -100,7 +100,9 @@
           }
       }
       else if (isVText(b)) {
-          appendPatch(apply, new VPatch(CONSTANT.VTEXT, a, b));
+          if (!isVText(a) || a.text !== b.text) {
+              appendPatch(apply, new VPatch(CONSTANT.VTEXT, a, b));
+          }
       }
       ...
   }
