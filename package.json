@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "babel-node test/index.js --presets es2015,stage-2",
-    "webpack": "webpack && cp ./page/*.html ./dist",
+    "babel": "babel src --out-dir dist",
+    "webpack": "webpack",
     "buildjsx": "babel --plugins transform-react-jsx"
   },
   "repository": {
@@ -25,6 +26,7 @@
     "babel-plugin-transform-react-jsx": "^6.24.1",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-stage-2": "^6.24.1",
+    "html-webpack-plugin": "^2.28.0",
     "webpack": "^2.3.3"
   },
   "dependencies": {
