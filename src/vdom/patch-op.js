@@ -3,7 +3,7 @@
  * Created by swxy on 2017/4/12.
  */
 import * as CONSTANTS from '../util/constant';
-import render from './create';
+import render, {setProperties} from './create';
 
 export default function applyPatch(vPatch, domNode) {
     const {type, patch, vNode} = vPatch;
@@ -16,10 +16,14 @@ export default function applyPatch(vPatch, domNode) {
             insert(domNode, patch);
             break;
         case CONSTANTS.VTEXT:
-            textPatch(domNode, vNode, patch);
+            textPatch(domNode, patch);
             break;
         case CONSTANTS.VNODE:
-            nodePatch(domNode, vNode, patch);
+            nodePatch(domNode, patch);
+            break;
+        case CONSTANTS.PROPS:
+            setProperties(domNode, patch);
+            break;
     }
 }
 
@@ -37,21 +41,21 @@ function insert(domNode, patch) {
     }
 }
 
-function textPatch(domNode, leftNode, vText) {
+function textPatch(domNode, vText) {
     if (domNode.type === 3) {
-        domNode.replaceData(0, leftNode.length, vText.text);
+        domNode.replaceData(0, domNode.length, vText.text);
     }
     else {
         let parentNode = domNode.parentNode;
         if (parentNode) {
-            parentNode.replaceChild(leftNode, render(vText));
+            parentNode.replaceChild(render(vText), domNode);
         }
     }
 }
 
-function nodePatch(domNode, leftNode, vNode) {
+function nodePatch(domNode, vNode) {
     let parentNode = domNode.parentNode;
     if (parentNode) {
-        parentNode.replaceChild(leftNode, render(vNode));
+        parentNode.replaceChild(render(vNode), domNode);
     }
 }

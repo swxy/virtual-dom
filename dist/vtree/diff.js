@@ -37,7 +37,10 @@ function walk(a, b, patch, index) {
     } else if ((0, _util.isVNode)(b)) {
         if ((0, _util.isVNode)(a)) {
             if (a.tagName === b.tagName) {
-                //
+                var propsPatch = diffProps(a.properties, b.properties);
+                if (!(0, _util.isEmptyObject)(propsPatch)) {
+                    apply = appendPatch(apply, new _vpatch2.default(CONSTANT.PROPS, a, propsPatch));
+                }
             } else {
                 apply = appendPatch(apply, new _vpatch2.default(CONSTANT.VNODE, a, b));
             }
@@ -46,7 +49,9 @@ function walk(a, b, patch, index) {
             apply = appendPatch(apply, new _vpatch2.default(CONSTANT.VNODE, a, b));
         }
     } else if ((0, _util.isVText)(b)) {
-        apply = appendPatch(apply, new _vpatch2.default(CONSTANT.VTEXT, a, b));
+        if (!(0, _util.isVText)(a) || a.text !== b.text) {
+            apply = appendPatch(apply, new _vpatch2.default(CONSTANT.VTEXT, a, b));
+        }
     }
 
     if (apply) {
@@ -94,4 +99,22 @@ function diffChildren(a, b, patch, apply, index) {
     }
 
     return apply;
+}
+
+function diffProps(oldProps, newProps) {
+    var diff = {};
+    for (var oldKey in oldProps) {
+        if (!(oldKey in newProps)) {
+            diff[oldKey] = undefined; // 表示需要删除的属性
+        } else if (oldProps[oldKey] !== newProps[oldKey]) {
+            diff[oldKey] = newProps[oldKey];
+        }
+    }
+
+    for (var newKey in newProps) {
+        if (!(newKey in oldProps)) {
+            diff[newKey] = newProps[newKey];
+        }
+    }
+    return diff;
 }

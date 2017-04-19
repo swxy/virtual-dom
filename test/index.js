@@ -5,8 +5,8 @@
 
 import {h, diff} from '../src';
 
-const hello = h("div", "hello")
-const world = h("div", "world")
+const hello = h("div", {className: "hello"}, "hello")
+const world = h("div", {}, "hello")
 const patches = diff(hello, world);
 console.log(JSON.stringify(hello, null, 4));
 console.log(JSON.stringify(world, null, 4));

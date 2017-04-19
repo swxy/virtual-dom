@@ -23,9 +23,14 @@ function getEntry() {
 function getHtml() {
     const entry = getEntry();
     return Object.keys(entry).map((key) => {
+        let template = 'page/' + key + '.html';
+        if (!fs.existsSync(template)) {
+            template = 'page/template.html';
+        }
         return new HtmlWebpackPlugin({
+            title: key + ' demo',
             filename: key + '.html',
-            template: 'page/index.html',
+            template: template,
             chunks: [key]
         })
     })

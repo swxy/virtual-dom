@@ -35,10 +35,14 @@ function applyPatch(vPatch, domNode) {
             insert(domNode, patch);
             break;
         case CONSTANTS.VTEXT:
-            textPatch(domNode, vNode, patch);
+            textPatch(domNode, patch);
             break;
         case CONSTANTS.VNODE:
-            nodePatch(domNode, vNode, patch);
+            nodePatch(domNode, patch);
+            break;
+        case CONSTANTS.PROPS:
+            (0, _create.setProperties)(domNode, patch);
+            break;
     }
 }
 
@@ -56,20 +60,20 @@ function insert(domNode, patch) {
     }
 }
 
-function textPatch(domNode, leftNode, vText) {
+function textPatch(domNode, vText) {
     if (domNode.type === 3) {
-        domNode.replaceData(0, leftNode.length, vText.text);
+        domNode.replaceData(0, domNode.length, vText.text);
     } else {
         var parentNode = domNode.parentNode;
         if (parentNode) {
-            parentNode.replaceChild(leftNode, (0, _create2.default)(vText));
+            parentNode.replaceChild((0, _create2.default)(vText), domNode);
         }
     }
 }
 
-function nodePatch(domNode, leftNode, vNode) {
+function nodePatch(domNode, vNode) {
     var parentNode = domNode.parentNode;
     if (parentNode) {
-        parentNode.replaceChild(leftNode, (0, _create2.default)(vNode));
+        parentNode.replaceChild((0, _create2.default)(vNode), domNode);
     }
 }

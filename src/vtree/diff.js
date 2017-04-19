@@ -2,7 +2,7 @@
  * @file diff 比较新旧树
  * Created by swxy on 2017/4/11.
  */
-import {isArray, isVText, isVNode} from '../util';
+import {isArray, isVText, isVNode, isEmptyObject} from '../util';
 import VPatch from './vpatch';
 import * as CONSTANT from '../util/constant';
 
@@ -21,7 +21,10 @@ function walk(a, b, patch, index) {
     else if (isVNode(b)) {
         if (isVNode(a)) {
             if (a.tagName === b.tagName) {
-                //
+                const propsPatch = diffProps(a.properties, b.properties);
+                if (!isEmptyObject(propsPatch)) {
+                    apply = appendPatch(apply, new VPatch(CONSTANT.PROPS, a, propsPatch))
+                }
             }
             else {
                 apply = appendPatch(apply, new VPatch(CONSTANT.VNODE, a, b));
@@ -33,7 +36,9 @@ function walk(a, b, patch, index) {
         }
     }
     else if (isVText(b)) {
-        apply = appendPatch(apply, new VPatch(CONSTANT.VTEXT, a, b));
+        if (!isVText(a) || a.text !== b.text) {
+            apply = appendPatch(apply, new VPatch(CONSTANT.VTEXT, a, b));
+        }
     }
 
     if (apply) {
@@ -85,4 +90,23 @@ function diffChildren(a, b, patch, apply, index) {
     }
 
     return apply;
+}
+
+function diffProps(oldProps, newProps) {
+    let diff = {};
+    for (let oldKey in oldProps) {
+        if (!(oldKey in newProps)) {
+            diff[oldKey] = undefined; // 表示需要删除的属性
+        }
+        else if (oldProps[oldKey] !== newProps[oldKey]) {
+            diff[oldKey] = newProps[oldKey];
+        }
+    }
+
+    for (let newKey in newProps) {
+        if (!(newKey in oldProps)) {
+            diff[newKey] = newProps[newKey];
+        }
+    }
+    return diff;
 }

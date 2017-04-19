@@ -6,6 +6,10 @@ import {vnode, vtext, version} from './constant';
 
 export const isArray = Array.isArray;
 
+export function isEmptyObject(obj) {
+    return Object.keys(obj).length === 0;
+}
+
 export function isString (str) {
     return Object.prototype.toString.call(str) === '[object String]';
 }

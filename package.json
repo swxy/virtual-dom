@@ -6,7 +6,7 @@
   "scripts": {
     "test": "babel-node test/index.js --presets es2015,stage-2",
     "babel": "babel src --out-dir dist",
-    "webpack": "webpack",
+    "webpack": "webpack --watch",
     "buildjsx": "babel --plugins transform-react-jsx"
   },
   "repository": {

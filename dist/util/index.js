@@ -4,6 +4,7 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 exports.isArray = undefined;
+exports.isEmptyObject = isEmptyObject;
 exports.isString = isString;
 exports.isVNode = isVNode;
 exports.isVText = isVText;
@@ -15,6 +16,10 @@ var _constant = require('./constant');
  */
 require("babel-polyfill");
 var isArray = exports.isArray = Array.isArray;
+
+function isEmptyObject(obj) {
+    return Object.keys(obj).length === 0;
+}
 
 function isString(str) {
     return Object.prototype.toString.call(str) === '[object String]';
