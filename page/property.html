@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title><%= htmlWebpackPlugin.options.title %></title>
+    <style>
+        #root {
+            border: 1px solid rebeccapurple;
+        }
+        .code {
+            display: flex;
+        }
+
+        .code .left, .code .right {
+            flex: 1;
+            margin: 5px;
+            background: #5e5e5e;
+            color: white;
+        }
+
+        .hello {
+            background: red;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+        .world {
+            background: purple;
+            padding: 10px 20px;
+        }
+    </style>
+</head>
+<body>
+<div id="root"></div>
+<button id="update">update</button>
+<div class="code">
+    <pre class="left"></pre>
+    <pre class="right"></pre>
+</div>
+
+</body>
+</html>
