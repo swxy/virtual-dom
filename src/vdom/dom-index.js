@@ -27,7 +27,7 @@ function recurse(rootNode, tree, indices, nodes = {}, rootIndex) {
         for (let i = 0; i < vChildren.length; i++) {
             let vChild = vChildren[i] || {};
             rootIndex += 1;
-            let nextIndex = rootIndex + (vChild.children && vChild.children.length || 0);
+            let nextIndex = rootIndex + (vChild.count || 0);
 
             // 如果此次有子节点的话，递归遍历子节点
             if (indexInRange(indices, rootIndex, nextIndex)) {
